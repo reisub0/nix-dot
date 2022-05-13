@@ -12,10 +12,8 @@
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
 
-  # Htop
-  # https://rycee.gitlab.io/home-manager/options.html#opt-programs.htop.enable
-  #programs.htop.enable = true;
-  #programs.htop.settings.show_program_path = true;
+  home.file.".zshenv".source = config.lib.file.mkOutOfStoreSymlink ./.zshenv;
+  home.file.".zshenv".target = ".zshenv";
 
   home.packages = with pkgs;
     [
@@ -36,7 +34,7 @@
       #haskellPackages.implicit-hie
       #haskellPackages.stack
       #idris2
-      #jq
+      jq
       #nodePackages.typescript
       #nodejs
       #purescript
