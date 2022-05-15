@@ -18,6 +18,7 @@
     "raindropio"
     "rescuetime"
     "resilio-sync"
+    "qbittorrent"
     "secretive"
     "spotify"
     "surfshark"
