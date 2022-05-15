@@ -11,13 +11,15 @@
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
 
-  home.file.".zshenv".source = (linkConfig config).to ".zshenv";
+  home.file.".zshenv".source = (linkConfig config).home ".zshenv";
 
-  home.file.".config/zsh".source = (linkConfig config).to ".config/zsh";
-  home.file.".config/nvim".source = (linkConfig config).to ".config/nvim";
-  home.file.".local/share/sd".source = (linkConfig config).to ".local/share/sd";
+  home.file.".config/zsh".source = (linkConfig config).home ".config/zsh";
+  home.file.".config/nvim".source = (linkConfig config).home ".config/nvim";
+  home.file.".local/share/sd".source = (linkConfig config).home ".local/share/sd";
+  home.file.".tmux.conf".source = (linkConfig config).home ".tmux.conf";
+  home.file.".tmux.conf.local".source = (linkConfig config).home ".tmux.conf.local";
 
-  home.file.".ssh".source = (linkConfig config).to "private/.ssh";
+  home.file.".ssh".source = (linkConfig config).private ".ssh";
 
   home.packages = with pkgs;
     [
@@ -32,6 +34,11 @@
       jq
       gnupg
       git-crypt
+      tmux
+      goku
+      neovim
+      nixfmt
+      speedtest-cli
 
       # Dev stuff
       # (agda.withPackages (p: [ p.standard-library ]))
