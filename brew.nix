@@ -1,6 +1,7 @@
 # vim: tabstop=2 shiftwidth=2 softtabstop=2 expandtab:
 {
   casks = [
+    "aldente"
     "alfred"
     "beeper"
     "bettertouchtool"
@@ -11,8 +12,9 @@
     "firefox"
     "karabiner-elements"
     "kitty"
-    "obsidian"
     "macfuse"
+    "obsidian"
+    "parsec"
     "raindropio"
     "rescuetime"
     "resilio-sync"
@@ -25,6 +27,7 @@
   brews = [ "pam-reattach" "mas" ];
 
   masApps = {
+    Amphetamine = 937984704;
     Bitwarden = 1352778147;
   };
 }
