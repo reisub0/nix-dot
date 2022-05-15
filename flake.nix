@@ -41,6 +41,18 @@
               purescript;
           }));
       };
+      homeRepoDirPath = ".dot";
+      # TODO: Refactor to remove the config dependency
+      linkConfig = config: rec {
+        liveConfig = true;
+        flakeRoot = self.outPath;
+        externalHomeRoot = "${config.home.homeDirectory}/${homeRepoDirPath}";
+        to = path:
+          (if liveConfig then
+            (config.lib.file.mkOutOfStoreSymlink "${externalHomeRoot}/${path}")
+          else
+            "${flakeRoot}/${path}");
+      };
     in {
       # My `nix-darwin` configs
 
@@ -58,6 +70,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.g = import ./home.nix;
+              home-manager.extraSpecialArgs = { inherit inputs linkConfig; };
             }
           ];
         };

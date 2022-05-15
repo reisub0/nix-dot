@@ -15,6 +15,8 @@ in {
   nix.trustedUsers = [ "@admin" ];
   users.nix.configureBuildUsers = true;
 
+  users.users.g.home = "/Users/g";
+
   # Enable experimental nix command and flakes
   # nix.package = pkgs.nixUnstable;
   nix.extraOptions = ''
