@@ -15,6 +15,9 @@
   home.file.".zshenv".source = config.lib.file.mkOutOfStoreSymlink ./.zshenv;
   home.file.".zshenv".target = ".zshenv";
 
+  home.file."zsh".source = config.lib.file.mkOutOfStoreSymlink ./.config/zsh;
+  home.file."zsh".target = ".config/zsh";
+
   home.packages = with pkgs;
     [
       # Some basics
@@ -24,6 +27,8 @@
       wget
       kopia
       lsd
+      sops
+      jq
 
       # Dev stuff
       # (agda.withPackages (p: [ p.standard-library ]))
@@ -34,7 +39,6 @@
       #haskellPackages.implicit-hie
       #haskellPackages.stack
       #idris2
-      jq
       #nodePackages.typescript
       #nodejs
       #purescript

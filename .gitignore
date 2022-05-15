@@ -1,1 +1,5 @@
 result
+#ZSH Stuff
+.zsh_history
+*.zwc
+.zcompdump
