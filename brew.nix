@@ -2,7 +2,6 @@
 {
   casks = [
     "aldente"
-    "alfred"
     "beeper"
     "bettertouchtool"
     "bitwarden"
@@ -14,6 +13,7 @@
     "kitty"
     "macfuse"
     "obsidian"
+    "odrive"
     "parsec"
     "raindropio"
     "rescuetime"
@@ -23,6 +23,7 @@
     "spotify"
     "surfshark"
     "visual-studio-code"
+    "zotero"
   ];
 
   brews = [ "pam-reattach" "mas" ];

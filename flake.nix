@@ -46,10 +46,16 @@
       linkConfig = config: rec {
         liveConfig = true;
         flakeRoot = self.outPath;
-        externalHomeRoot = "${config.home.homeDirectory}/${homeRepoDirPath}";
-        to = path:
+        externalHomeRoot = "${config.home.homeDirectory}/${homeRepoDirPath}/home-root";
+        externalPrivateRoot = "${config.home.homeDirectory}/${homeRepoDirPath}/private-root";
+        home = path:
           (if liveConfig then
             (config.lib.file.mkOutOfStoreSymlink "${externalHomeRoot}/${path}")
+          else
+            "${flakeRoot}/${path}");
+        private = path:
+          (if liveConfig then
+            (config.lib.file.mkOutOfStoreSymlink "${externalPrivateRoot}/${path}")
           else
             "${flakeRoot}/${path}");
       };

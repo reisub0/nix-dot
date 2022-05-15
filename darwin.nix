@@ -36,8 +36,8 @@ in {
   # `home-manager` currently has issues adding them to `~/Applications`
   # Issue: https://github.com/nix-community/home-manager/issues/1341
   environment.systemPackages = with pkgs; [
-    neovim
-    nixfmt
+    # neovim
+    # nixfmt
     #kitty
     #terminal-notifier
   ];
@@ -67,8 +67,11 @@ in {
   #};
   programs.nix-index.enable = true;
 
+  networking.hostName = "abc";
+  networking.localHostName = "abc";
+
   # Fonts
-  fonts.fontDir.enable = true;
+  fonts.fontDir.enable = false;
   fonts.fonts = with pkgs;
     [
       #recursive
@@ -82,7 +85,7 @@ in {
     "Please contact k.p.govind@gmail.com if found";
   system.defaults.dock.autohide = true;
   system.defaults.dock.show-recents = false;
-  system.defaults.dock.static-only = true;
+  system.defaults.dock.static-only = false;
   system.defaults.dock.wvous-br-corner = 10;
 
   # Keyboard
