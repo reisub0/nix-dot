@@ -111,9 +111,10 @@ if [ ! -f "$MINIPLUG_FILE" ]; then
 fi
 z4h source "$MINIPLUG_FILE"
 export MINIPLUG_HOME="$HOME/.config/zsh/plugins"
+
+export SD_ROOT="$HOME/.local/share/sd"
+fpath=("$ZDOTDIR/plugins/ianthehenry/sd" $fpath)
+
 miniplug plugin 'ianthehenry/sd'
 miniplug plugin 'olets/zsh-abbr'
-miniplug install
 miniplug load
-z4h install ianthehenry/sd
-z4h load $Z4H/ianthehenry/sd

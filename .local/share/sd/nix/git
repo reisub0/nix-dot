@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+pushd "$HOME/.dot"
+git "$@"
+popd
