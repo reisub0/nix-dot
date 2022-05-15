@@ -14,7 +14,7 @@ zstyle ':z4h:' auto-update-days '28'
 zstyle ':z4h:bindkey' keyboard  'mac'
 
 # Don't start tmux.
-zstyle ':z4h:' start-tmux       no
+zstyle ':z4h:' start-tmux 'no'
 
 # Mark up shell's output with semantic information.
 zstyle ':z4h:' term-shell-integration 'yes'
@@ -113,8 +113,8 @@ z4h source "$MINIPLUG_FILE"
 export MINIPLUG_HOME="$HOME/.config/zsh/plugins"
 
 export SD_ROOT="$HOME/.local/share/sd"
-fpath=("$ZDOTDIR/plugins/ianthehenry/sd" $fpath)
+fpath=("$ZDOTDIR/plugins/reisub0/sd" $fpath)
 
-miniplug plugin 'ianthehenry/sd'
+miniplug plugin 'reisub0/sd'
 miniplug plugin 'olets/zsh-abbr'
 miniplug load
