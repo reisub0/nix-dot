@@ -105,18 +105,38 @@
               let
                 file = "/etc/pam.d/sudo";
                 option = "security.pam.enableSudoTouchIdAuth";
+                patchScript = ''
+                  --- ${file}
+                  +++ ${file}
+                  @@ -1,4 +1,6 @@
+                   # sudo: auth account password session
+                  +auth       optional       /opt/homebrew/lib/pam/pam_reattach.so
+                  +auth       sufficient     pam_tid.so
+                   auth       sufficient     pam_smartcard.so
+                   auth       required       pam_opendirectory.so
+                   account    required       pam_permit.so
+                '';
               in ''
+                patchFile="$(mktemp)"
+                cat <<EOF > "$patchFile"
+                ${patchScript}
+                EOF
                 ${if isEnabled then ''
                   # Enable sudo Touch ID authentication, if not already enabled
-                  if ! grep 'pam_tid.so' ${file} > /dev/null; then
-                    sed -i "" '2i\
-                  auth       sufficient     pam_tid.so # nix-darwin: ${option}
-                    ' ${file}
+                  if ! [ -f /opt/homebrew/lib/pam/pam_reattach.so ]; then
+                      echo "Ensure that pam_reattach is installed from Homebrew"
+                      return
+                  fi
+                  # If patch has not already been applied, apply it
+                  if ! patch -R --dry-run -sfp0 -d/ <"$patchFile" >/dev/null 2>&1; then
+                    echo "Applying tid, pam_reattach patches to ${file}"
+                    patch -p0 -d/ <"$patchFile"
                   fi
                 '' else ''
-                  # Disable sudo Touch ID authentication, if added by nix-darwin
-                  if grep '${option}' ${file} > /dev/null; then
-                    sed -i "" '/${option}/d' ${file}
+                  # If patch has not already been reversed, reverse it
+                  if ! patch --dry-run -sfp0 -d/ <"$patchFile" >/dev/null 2>&1; then
+                    echo "Reversing tid, pam_reattach patches to ${file}"
+                    patch -R -p0 -d/ <"$patchFile"
                   fi
                 ''}
               '';

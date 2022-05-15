@@ -120,6 +120,6 @@ in {
     "~/Library/Mobile Documents/com~apple~CloudDocs/ScreenCap";
   system.defaults.screencapture.disable-shadow = true;
   # Add ability to used TouchID for sudo authentication
-  security.pam.enableSudoTouchIdAuth = false;
+  security.pam.enableSudoTouchIdAuth = true;
 
 }
