@@ -17,6 +17,11 @@
 
   home.file."zsh".source = config.lib.file.mkOutOfStoreSymlink ./.config/zsh;
   home.file."zsh".target = ".config/zsh";
+  home.file."zsh".recursive = true;
+
+  home.file."private".source = config.lib.file.mkOutOfStoreSymlink ./private;
+  home.file."private".target = ".";
+  home.file."private".recursive = true;
 
   home.packages = with pkgs;
     [
@@ -29,6 +34,8 @@
       lsd
       sops
       jq
+      gnupg
+      git-crypt
 
       # Dev stuff
       # (agda.withPackages (p: [ p.standard-library ]))
