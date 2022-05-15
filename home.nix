@@ -12,8 +12,9 @@
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
 
-  home.file.".zshenv".source = (config.home.homeDirectory) + "/" + .dot/.zshenv;
-  
+  #home.file.".zshenv".source = config.lib.file.mkOutOfStoreSymlink config.home.homeDirectory + ("/" + .dot/.zshenv);
+  home.file.".zshenv".source = config.lib.file.mkOutOfStoreSymlink /Users/g + ("/" + .dot/.zshenv);
+
   #home.file.".zshenv".target = ./.zshenv;
 
   home.file."zsh".source = config.lib.file.mkOutOfStoreSymlink ./.config/zsh;

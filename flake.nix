@@ -13,11 +13,14 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
+    flake-utils.url = "github:numtide/flake-utils";
+    flake-utils.inputs.nixpkgs.follows = "nixpkgs-unstable";
+
     # Other sources
     #comma = { url = github:Shopify/comma; flake = false; };
   };
 
-  outputs = { self, darwin, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, darwin, nixpkgs, home-manager, flake-utils, ... }@inputs:
     let
 
       inherit (darwin.lib) darwinSystem;
