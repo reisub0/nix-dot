@@ -19,9 +19,10 @@
   home.file."zsh".target = ".config/zsh";
   home.file."zsh".recursive = true;
 
-  home.file."private".source = config.lib.file.mkOutOfStoreSymlink ./private;
-  home.file."private".target = ".";
-  home.file."private".recursive = true;
+  home.file."ssh-config".source =
+    config.lib.file.mkOutOfStoreSymlink ./private/.ssh;
+  home.file."ssh-config".target = ".ssh";
+  home.file."ssh-config".recursive = true;
 
   home.packages = with pkgs;
     [
