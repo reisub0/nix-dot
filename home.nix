@@ -1,9 +1,8 @@
 # vim: tabstop=2 shiftwidth=2 softtabstop=2 expandtab:
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, linkConfig, ... }:
 
 {
   home.stateVersion = "22.05";
-
   # https://github.com/malob/nixpkgs/blob/master/home/default.nix
 
   # Direnv, load and unload environment variables depending on the current directory.
@@ -12,19 +11,13 @@
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
 
-  #home.file.".zshenv".source = config.lib.file.mkOutOfStoreSymlink config.home.homeDirectory + ("/" + .dot/.zshenv);
-  home.file.".zshenv".source = config.lib.file.mkOutOfStoreSymlink /Users/g + ("/" + .dot/.zshenv);
+  home.file.".zshenv".source = (linkConfig config).to ".zshenv";
 
-  #home.file.".zshenv".target = ./.zshenv;
+  home.file.".config/zsh".source = (linkConfig config).to ".config/zsh";
+  home.file.".config/nvim".source = (linkConfig config).to ".config/nvim";
+  home.file.".local/share/sd".source = (linkConfig config).to ".local/share/sd";
 
-  home.file."zsh".source = config.lib.file.mkOutOfStoreSymlink ./.config/zsh;
-  home.file."zsh".target = ".config/zsh";
-  home.file."zsh".recursive = true;
-
-  home.file."ssh-config".source =
-    config.lib.file.mkOutOfStoreSymlink ./private/.ssh;
-  home.file."ssh-config".target = ".ssh";
-  home.file."ssh-config".recursive = true;
+  home.file.".ssh".source = (linkConfig config).to "private/.ssh";
 
   home.packages = with pkgs;
     [
