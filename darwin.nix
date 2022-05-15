@@ -67,10 +67,11 @@ in {
 
   # Fonts
   fonts.fontDir.enable = true;
-  fonts.fonts = with pkgs; [
-    #recursive
-    #(nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-  ];
+  fonts.fonts = with pkgs;
+    [
+      #recursive
+      #(nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    ];
 
   # Customization
   system.defaults.NSGlobalDomain._HIHideMenuBar = true;
