@@ -48,14 +48,7 @@ in {
   homebrew.global.brewfile = true;
   homebrew.global.noLock = true;
 
-  homebrew.taps = [
-    "homebrew/cask"
-    "homebrew/cask-drivers"
-    "homebrew/cask-fonts"
-    "homebrew/cask-versions"
-    "homebrew/core"
-    "homebrew/services"
-  ];
+  homebrew.taps = brewConf.taps;
 
   homebrew.casks = brewConf.casks;
   homebrew.brews = brewConf.brews;

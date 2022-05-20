@@ -1,5 +1,16 @@
 # vim: tabstop=2 shiftwidth=2 softtabstop=2 expandtab:
 {
+
+  taps = [
+    "homebrew/cask"
+    "homebrew/cask-drivers"
+    "homebrew/cask-fonts"
+    "homebrew/cask-versions"
+    "homebrew/core"
+    "homebrew/services"
+    "mistertea/et"
+  ];
+
   casks = [
     "aldente"
     "beeper"
