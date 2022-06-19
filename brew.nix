@@ -39,11 +39,23 @@
     "secretive"
     "spotify"
     "surfshark"
+    "todoist"
+    "unnaturalscrollwheels"
+    "utm"
     "visual-studio-code"
     "zotero"
   ];
 
-  brews = [ "pam-reattach" "mas" ];
+  brews = [
+    "arduino-cli"
+    "colima"
+    "docker"
+    "pam-reattach"
+    "mas"
+    "MisterTea/et/et"
+    "helm"
+    "operator-sdk"
+  ];
 
   masApps = {
     Amphetamine = 937984704;
